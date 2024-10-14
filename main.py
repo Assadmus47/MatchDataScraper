@@ -15,7 +15,9 @@ def main(page=page):
     def get_matche_info(championship):
         if championship.contents:
             championship_title = championship.contents[1].find("h2").text.strip()
-            all_matches = championship.contents   
+            all_matches = championship.contents[3].find_all('div', {'class': 'item finish liItem'})
+            number_of_matches = len(all_matches)
+            print(number_of_matches)   
     if championships:
         get_matche_info(championships[0])
     else:
