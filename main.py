@@ -1,9 +1,25 @@
 import requests
 from bs4 import BeautifulSoup
 import csv
+from datetime import datetime
+
+
+# input to enter the date of the match  
+def is_valid_date(date_str):
+    try:
+        datetime.strptime(date_str, "%m/%d/%Y")
+        return True
+    except ValueError:
+        return False
 
 # input to enter the date of the match  
 date = input("Enter the date in the format of mm/dd/yyyy: ")
+
+while not is_valid_date(date):
+    print("Invalid date format. Please enter the date in the format of mm/dd/yyyy.")
+    date = input("Enter the date in the format of mm/dd/yyyy: ")
+ 
+
 page = requests.get(f"https://www.yallakora.com/Match-Center/?date={date}")
 
 def main(page=page):
